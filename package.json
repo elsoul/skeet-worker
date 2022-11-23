@@ -7,14 +7,27 @@
   "author": "POPPIN-FUMI",
   "private": true,
   "scripts": {
-    "docker:build": "docker build . -t skeet-worker",
-    "docker:run": "docker run -d -p 4000:4000 --name skeet-worker skeet-worker",
-    "docker:rm": "docker rm -f skeet-worker",
+    "test": "echo $npm_package_config_image_url",
+    "docker:build": "docker build . -t $npm_package_config_app_name",
+    "docker:run": "docker run -d -p 4000:4000 --name $npm_package_config_app_name $npm_package_config_app_name",
+    "docker:rm": "docker rm -f $npm_package_config_app_name",
+    "docker:tag": "docker tag $npm_package_config_docker_image $npm_package_config_image_url",
+    "docker:push": "docker push $npm_package_config_image_url",
+    "run:deploy": "gcloud run deploy $npm_package_config_app_name --image $npm_package_config_image_url --memory=$npm_package_config_memory --cpu=$npm_package_config_cpu --quiet --region=$npm_package_config_region --allow-unauthenticated --platform=managed --port=8080 --project $npm_package_config_project_id",
     "update:packages": "ncu -u && yarn",
     "build": "tsc",
     "publish": "npm publish",
     "dev": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/index.ts",
     "start": "node dist/index.js"
+  },
+  "config": {
+    "project_id": "skeet-framework",
+    "app_name": "skeet-worker",
+    "docker_image": "skeet-worker:latest",
+    "image_url": "eu.gcr.io/skeet-framework/skeet-worker:latest",
+    "region": "europe-west4",
+    "cpu": "1",
+    "memory": "1Gi"
   },
   "dependencies": {
     "dotenv": "16.0.3",
