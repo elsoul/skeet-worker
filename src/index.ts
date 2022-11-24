@@ -1,20 +1,16 @@
-import express from 'express'
-import dotenv from 'dotenv'
+import express from "express";
+import dotenv from "dotenv";
+import { Root, Run } from "./root";
 
-dotenv.config()
+dotenv.config();
+export const app = express();
+const router = express.Router();
+const port = process.env.PORT || 4000;
 
-const app = express()
-const port = process.env.PORT || 4000
+router.get("/", Root);
+router.post("/run", Run);
+app.use("/", router);
 
-app.get('/', (req, res) => {
-  res.json({ status: 'Running Skeet Worker Server' })
-})
-
-app.post('/run', (req, res) => {
-  // Define worker task here
-  res.json({ status: 'Success!' })
-})
-
-app.listen(port, () => {
-  console.log(`[server]: Server is running at http://localhost:${port}`)
-})
+export const server = app.listen(port, () => {
+	console.log(`[server]: Server is running at http://localhost:${port}`);
+});

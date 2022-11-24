@@ -1,11 +1,12 @@
 ## Skeet Worker API Boilerplate
 Express, TypeScript, Google Cloud Run
 
+
 ## What's Skeet?
 
 TypeScript Serverless Framework 'Skeet'. 
 
-The Skeet project was launched with the goal of reducing software development, operation and maintenance costs. 
+The Skeet project was launched with the goal of reducing software development, operation, and maintenance costs. 
 
 Build Serverless Apps faster.
 Powered by TypeScript GraphQL, Prisma, Jest, Prettier, and Google Cloud. 
@@ -25,12 +26,14 @@ $ gcloud services enable run.googleapis.com
 $ gcloud services enable containerregistry.googleapis.com
 ```
 
+
 ## Edit package.json config
 
-This is example config. 
-Please replace values to your setting.
+This is an example config. 
+Please replace values with your setting.
 
-package.json
+
+`package.json`
 ```json
 "config": {
   "project_id": "skeet-framework",
@@ -43,8 +46,31 @@ package.json
 }
 ```
 
-## Run local
+## Usage
+
+
+### Run local
 ```bash
 $ yarn
 $ yarn dev
+```
+
+
+### Test
+
+```bash
+$ yarn test
+```
+
+
+### Build & Run
+```bash
+$ yarn build
+$ yarn start
+```
+
+
+### Deploy to Google Cloud Run
+```bash
+$ yarn deploy
 ```
