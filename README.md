@@ -74,3 +74,12 @@ $ yarn start
 ```bash
 $ yarn deploy
 ```
+
+
+### Discord Webhook Message
+Set your Discord Webhook Url in `.env` 
+
+```bash
+$ cp .env.sample .env
+
+```
